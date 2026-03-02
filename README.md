@@ -1,6 +1,8 @@
 # Stable Diffusion web UI
 A web interface for Stable Diffusion, implemented using Gradio library.
 
+> **This fork** adds [uv](https://docs.astral.sh/uv/)-based launchers for faster dependency setup and smaller venvs. See [UV-based installation](#uv-based-installation-optional) below.
+
 ![](screenshot.png)
 
 ## Features
@@ -156,9 +158,35 @@ git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
 
 3. Run `webui.sh`.
 4. Check `webui-user.sh` for options.
+
+### UV-based installation (optional)
+This fork includes launchers that use [uv](https://docs.astral.sh/uv/) for faster venv creation and dependency installs. Requires [uv](https://github.com/astral-sh/uv) on your PATH.
+
+**Windows**
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/): `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+2. Run `webui-uv.bat`.
+
+**Linux / macOS / Git Bash**
+1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/): `curl -LsSf https://astral.sh/uv/install.sh | sh`
+2. Run `./webui-uv.sh`.
+
+**Or use via webui-user**
+- Set `USE_UV=1` in `webui-user.sh` (Linux) or `webui-user.bat` (Windows), then run `./webui.sh` or `webui-user.bat` as usual.
+
+Default args: `--xformers --disable-safe-unpickle --api`. Edit `webui-user.bat`/`webui-user.sh` to change.
+
 ### Installation on Apple Silicon
 
 Find the instructions [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Installation-on-Apple-Silicon).
+
+## Fork modifications
+| File | Purpose |
+|------|---------|
+| `webui-uv.bat` | Windows launcher using uv for venv + PyTorch (CUDA 12.1) |
+| `webui-uv.sh` | Unix launcher, mirrors webui-uv.bat |
+| `webui.sh` | Delegates to webui-uv.sh when `USE_UV=1` |
+| `webui-user.bat` / `webui-user.sh` | `USE_UV` option, default args |
+| `pyproject.toml` | uv project config, PyTorch extra-index |
 
 ## Contributing
 Here's how to add code to this repo: [Contributing](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Contributing)
