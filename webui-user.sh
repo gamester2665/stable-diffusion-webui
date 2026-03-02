@@ -39,6 +39,9 @@
 #export CODEFORMER_COMMIT_HASH=""
 #export BLIP_COMMIT_HASH=""
 
+# Use uv for venv/deps (requires: export USE_UV=1)
+#export USE_UV="1"
+
 # Uncomment to enable accelerated launch
 #export ACCELERATE="True"
 

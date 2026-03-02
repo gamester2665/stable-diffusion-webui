@@ -22,6 +22,11 @@ then
     source "$SCRIPT_DIR"/webui-user.sh
 fi
 
+# Use uv launcher when USE_UV=1 and uv is available
+if [[ "${USE_UV}" == "1" ]] && command -v uv &>/dev/null && [[ -f "$SCRIPT_DIR"/webui-uv.sh ]]; then
+    exec "$SCRIPT_DIR"/webui-uv.sh "$@"
+fi
+
 # If $venv_dir is "-", then disable venv support
 use_venv=1
 if [[ $venv_dir == "-" ]]; then

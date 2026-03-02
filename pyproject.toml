@@ -1,3 +1,14 @@
+[project]
+name = "stable-diffusion-webui"
+version = "1.0.0"
+requires-python = ">=3.10,<3.12"
+readme = "README.md"
+# Dependencies are in requirements_versions.txt; use: uv pip install -r requirements_versions.txt
+
+[tool.uv]
+# PyTorch CUDA wheels (cu121 = CUDA 12.1). For CPU-only use: extra-index-url = []
+extra-index-url = ["https://download.pytorch.org/whl/cu121"]
+
 [tool.ruff]
 
 target-version = "py39"
